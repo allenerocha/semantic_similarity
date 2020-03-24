@@ -21,6 +21,13 @@ class Word:
 
 
     def append(self, word: str):
+
+        if not isinstance(word, str):
+            raise TypeError(f"Expected value to be str type, got {type(word)}.")
+
+        if len(word) < 1:
+            raise ValueError(f"Error adding to vector with the arguement: {word}.")
+
         if word in self.descriptor_components:
             self.vector[self.word][word] += 1
         else:
