@@ -138,6 +138,57 @@ class TestWord(unittest.TestCase):
         self.assertNotEqual(word_test.descriptor, hard_coded)
 
 
+    def test_descriptor_components(self):
+        word_test = word.Word("man")
+        word_test.append("i")
+        word_test.append("i")
+        word_test.append("i")
+
+        word_test.append("am")
+        word_test.append("am")
+        word_test.append("am")
+
+        word_test.append("a")
+        word_test.append("a")
+
+        word_test.append("sick")
+
+        word_test.append("spiteful")
+
+        word_test.append("an")
+
+        word_test.append("unattractive")
+
+
+        # hard coded version of the dictionary created above
+        hard_coded = {
+                        "man": {
+                                "i": 3,
+                                "am": 3,
+                                "a": 2,
+        # these have the same value
+                                "sick": 1,
+                                "spiteful": 1,
+                                "an": 1,
+                                "unattractive": 1,
+                        }
+                    }
+
+        # these have the same value
+        self.assertEqual(word_test.descriptor_components, hard_coded["man"])
+
+        # these no longer have the same value
+        word_test.append("unattractive")
+        self.assertNotEqual(word_test.descriptor_components, hard_coded["man"])
+
+        # now they both have the same value again
+        hard_coded["man"]["unattractive"] += 1
+        self.assertEqual(word_test.descriptor_components, hard_coded["man"])
+
+        # these no longer have the same value
+        hard_coded["man"]["unattractive"] += 1
+        self.assertNotEqual(word_test.descriptor_components, hard_coded["man"])
+
 
     def test_magnitude(self):
         word_test = word.Word("man")
