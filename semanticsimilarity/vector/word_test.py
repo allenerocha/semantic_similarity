@@ -4,7 +4,7 @@ import math
 
 
 class TestWord(unittest.TestCase):
-    def test_creation(self):
+    def test___init__(self):
         # test with str
         word_test = word.Word("man")
         self.assertEqual(list(word_test.descriptor.keys())[0], "man")
@@ -38,7 +38,7 @@ class TestWord(unittest.TestCase):
             word.Word("")
 
 
-    def test_adding_components(self):
+    def test_append(self):
         # add new component
         word_test = word.Word("man")
         self.assertEqual(len(word_test.descriptor_components), 0)
