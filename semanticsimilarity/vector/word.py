@@ -21,7 +21,6 @@ class Word:
 
 
     def append(self, word: str):
-
         if not isinstance(word, str):
             raise TypeError(f"Expected value to be str type, got {type(word)}.")
 
