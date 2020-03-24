@@ -1,3 +1,4 @@
+"""This module handles all relevant functions for reading the passed corpus"""
 import os
 
 
