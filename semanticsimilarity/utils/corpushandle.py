@@ -42,5 +42,18 @@ def dir_iter(path: str) -> list:
     return paths
 
 
-dir_iter("/home/allen/Downloads")
+def corpus_parse(path: str) -> str:
+    """
+    Opens the given path and returs its contents as a string
+    :param path: File path
+    :retrun: File contents as string
+    """
+    # checks if the path is a string
+    if not isinstance(path, str):
+        raise TypeError(f"Expecting path as a string, argument given was of type {type(path)}")
+
+    # checks for empty string
+    if len(path) < 1:
+        raise ValueError(f"Error handling the argument passed, was given {path}")
+
 
