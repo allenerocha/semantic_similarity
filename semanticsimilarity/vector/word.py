@@ -11,6 +11,9 @@ class Word:
         if not isinstance(word, str):
             raise TypeError(f"Expected value to be str type, got {type(word)}.")
 
+        if len(word) < 1:
+            raise ValueError(f"Error creating an instance with the arguement: {word}.")
+
         self.word = word
 
         self.vector = dict()
