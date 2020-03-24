@@ -86,6 +86,12 @@ class TestWord(unittest.TestCase):
         word_test.append("am")
         self.assertEqual(len(word_test.descriptor_components), 2)
 
+        # hard coded version of the dictionary created above
+        hard_coded = {"man": {"i": 2, "am": 2}}
+
+        # do these have the same value
+        self.assertEqual(word_test.descriptor, hard_coded)
+
 
     def test_magnitude(self):
         word_test = word.Word("man")
