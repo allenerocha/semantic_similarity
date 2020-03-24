@@ -21,5 +21,26 @@ def open_corpus(path: str):
     if not os.path.isdir(path) or not os.path.isfile(path):
         raise FileNotFoundError(f'Error looking for file or path. The given {path} was not found.')
 
+    # path is a directory
+    if os.path.isdir(path):
+        pass
 
+    #path is a file
+    else:
+        pass
+
+def dir_iter(path: str) -> list:
+    """
+    This function iterates over all of the files in the directory and returns them as a list of file paths
+    :param path: directory to iterate over
+    :return: List of file paths in path given
+    """
+    paths = list()
+    for filename in os.listdir(path):
+        paths.append(f"{path}/{filename}")
+
+    return paths
+
+
+dir_iter("/home/allen/Downloads")
 
