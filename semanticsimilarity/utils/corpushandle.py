@@ -2,7 +2,7 @@
 import os
 
 
-def open_corpus(path: str):
+def corpus(path: str):
     """
     This function opens the passed corpus path
     :param path: Path of file(s):
@@ -23,14 +23,20 @@ def open_corpus(path: str):
 
     # path is a directory
     if os.path.isdir(path):
+        # get all paths of the files as a list
         paths = dir_iter(path)
-
+        dataset = list()
+        # iterate the list of strings
         for p in paths:
-            print(p)
+            # append the text of the current file to the list
+            dataset.append(corpus_parse(p))
+        # return the list
+        return dataset
 
     #path is a file
     else:
-        pass
+        # return the text of the file
+        return [corpus_parse(path)]
 
 def dir_iter(path: str) -> list:
     """
@@ -45,7 +51,7 @@ def dir_iter(path: str) -> list:
     return paths
 
 
-def corpus_parse(path: str) -> str:
+def parse(path: str) -> str:
     """
     Opens the given path and returs its contents as a string
     :param path: File path
@@ -61,8 +67,6 @@ def corpus_parse(path: str) -> str:
 
     with open(path, "r") as file_data:
         corpus = file_data.readlines()
-
+    # merge all the strings to one string
     return ' '.join(corpus)
-
-
 
