@@ -56,4 +56,9 @@ def corpus_parse(path: str) -> str:
     if len(path) < 1:
         raise ValueError(f"Error handling the argument passed, was given {path}")
 
+    with open(path, "r") as file_data:
+        corpus = file_data.readlines()
+
+    return ' '.join(corpus)
+
 
