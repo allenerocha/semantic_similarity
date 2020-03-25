@@ -18,12 +18,15 @@ def open_corpus(path: str):
         raise ValueError(f"Error handling the argument passed, was given {path}")
 
     # check if path is not file or directory
-    if not os.path.isdir(path) or not os.path.isfile(path):
+    if not os.path.isdir(path) and not os.path.isfile(path):
         raise FileNotFoundError(f'Error looking for file or path. The given {path} was not found.')
 
     # path is a directory
     if os.path.isdir(path):
-        pass
+        paths = dir_iter(path)
+
+        for p in paths:
+            print(p)
 
     #path is a file
     else:
@@ -60,5 +63,6 @@ def corpus_parse(path: str) -> str:
         corpus = file_data.readlines()
 
     return ' '.join(corpus)
+
 
 
