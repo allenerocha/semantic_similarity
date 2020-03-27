@@ -1,6 +1,7 @@
 """This module handles all relevant functions for reading the passed corpus"""
 import os
 import tqdm
+import time
 
 
 def corpus(path: str):
@@ -10,6 +11,7 @@ def corpus(path: str):
         If the path given ends in a directory, it will iterate over all files in that directory
         Otherwise it will only work with that file
     """
+    total_time = time.time()
     # checks if the path is a string
     if not isinstance(path, str):
         raise TypeError(f"Expecting path as a string, argument given was of type {type(path)}")
@@ -24,19 +26,37 @@ def corpus(path: str):
 
     # path is a directory
     if os.path.isdir(path):
+
+        # get the start of the time
+        print(f"Looking for files in {path}")
+        start_time = time.time()
         # get all paths of the files as a list
         paths = dir_iter(path)
+        print(f"Found {len(paths)} in {time.time() - start_time} seconds.\n")
+
         dataset = list()
+
         # iterate the list of strings
+        start_time = time.time()
+        print(f"Parsing {len(paths)} files in {path}...")
+        failed_files = 0
+        completed_files = 0
         for p in tqdm.tqdm(paths):
-            # append the text of the current file to the list
-            dataset.append(parse(p))
+            try:
+                # append the text of the current file to the list
+                dataset.append(parse(p))
+                completed_files += 1
+            except:
+                failed_files += 1
         # return the list
+        print(f"{completed_files} were successfully extracted and {failed_files} failed to be extracted in {time.time() - start_time}!\n")
+        print(f"Operation completed in {time.time() - total_time} seconds!")
         return dataset
 
     #path is a file
     else:
         # return the text of the file
+        print(f"Operation completed in {time.time() - total_time} seconds!")
         return [parse(path)]
 
 def dir_iter(path: str) -> list:
