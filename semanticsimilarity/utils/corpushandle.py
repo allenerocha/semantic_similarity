@@ -1,5 +1,6 @@
 """This module handles all relevant functions for reading the passed corpus"""
 import os
+import tqdm
 
 
 def corpus(path: str):
@@ -27,16 +28,16 @@ def corpus(path: str):
         paths = dir_iter(path)
         dataset = list()
         # iterate the list of strings
-        for p in paths:
+        for p in tqdm.tqdm(paths):
             # append the text of the current file to the list
-            dataset.append(corpus_parse(p))
+            dataset.append(parse(p))
         # return the list
         return dataset
 
     #path is a file
     else:
         # return the text of the file
-        return [corpus_parse(path)]
+        return [parse(path)]
 
 def dir_iter(path: str) -> list:
     """
@@ -45,7 +46,7 @@ def dir_iter(path: str) -> list:
     :return: List of file paths in path given
     """
     paths = list()
-    for filename in os.listdir(path):
+    for filename in tqdm.tqdm(os.listdir(path)):
         paths.append(f"{path}/{filename}")
 
     return paths
@@ -69,4 +70,5 @@ def parse(path: str) -> str:
         corpus = file_data.readlines()
     # merge all the strings to one string
     return ' '.join(corpus)
+
 
