@@ -2,7 +2,7 @@ import unittest
 import corpushandle
 
 
-class TestWord(unittest.TestCase):
+class TestCorpusHandle(unittest.TestCase):
     def corpus_test(self):
         # check for int
         with self.assertRaises(TypeError):

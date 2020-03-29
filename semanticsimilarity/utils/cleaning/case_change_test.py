@@ -2,7 +2,7 @@ import unittest
 import case_change
 
 
-class TestWord(unittest.TestCase):
+class TestChangeCase(unittest.TestCase):
     def change_case_test(self):
         # check for int
         with self.assertRaises(TypeError):
